@@ -1,0 +1,24 @@
+<HTML>
+    <head>
+        <title>Flask app</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    </head>
+
+    <body>
+        <div class="login-page">
+            <div class="form">
+            <form class="login-form" action = "" method = post>
+                <input type="text" placeholder="username" name = username value = "{{request.form.username }}"/>
+                <input type="password" placeholder="password" name = password value = "{{request.form.password }}"/>
+                <button type = submit>login</button>
+                <p class="message">Not registered? <a href="#">Create an account</a></p>
+            </form>
+            </div>
+        </div>
+    </body>
+
+    <footer>
+        
+    </footer>
+
+</HTML>
