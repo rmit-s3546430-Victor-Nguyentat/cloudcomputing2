@@ -1,26 +1,33 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/styling.css') }}">
-    </head>
-
-    <body>
-        <div class="topnav">
-                <a class="active" href="/upload_image">Upload Image</a>
-                <a href="/view_translations">View Translations</a>
-                <a href="/">Logout</a>
-        </div>
-        <div class="form">
-            <form method='post' enctype='multipart/form-data'>
-                <div class="form">
-                    <input type="file" name="file">
-                    <button type='submit' value='Upload'>Upload</button>
+<HTML>
+        <head>
+            <title>Flask app</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/styling.css') }}">
+        </head>
+        <body>
+            <div class="topnav">
+                    <a class="active" href="/upload_image">Upload Image</a>
+                    <a href="/view_translations">View Translations</a>
+                    <a href="/">Logout</a>
+            </div>
+            <div class="container">
+                <div class="translationContainer">
+                    <div class="imageView">
+                        <img src="{{ url_for('static', filename='img/placeholder.jpg') }}" style="margin:10px">
+                        <form method='post' enctype='multipart/form-data'>
+                            <input type="file" name="file">
+                            <button type='submit' value='Upload'>Upload</button>
+                        </form>
+                    </div>
+                    <div class="translationView">
+                        <textarea class="textField"> hello </textarea>
+                        <textarea class="textField"> yo yo</textarea>
+                    </div>
                 </div>
-            </form>
-        </div>
-    </body>
-
-    <footer>
-    </footer>
-
-
-</html>
+            </div>
+        </body>
+        
+        <footer>
+        </footer>
+        
+    </HTML>
+      
