@@ -1,14 +1,21 @@
 <html>
     <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styling.css') }}">
     </head>
 
     <body>
+        <div class="topnav">
+                <a class="active" href="/upload_image">Upload Image</a>
+                <a href="/view_translations">View Translations</a>
+                <a href="/">Logout</a>
+        </div>
         <div class="form">
-            <div class="form">
-                <img>
-            </div>
-            <button>Upload image</button>
+            <form method='post' enctype='multipart/form-data'>
+                <div class="form">
+                    <input type="file" name="file">
+                    <button type='submit' value='Upload'>Upload</button>
+                </div>
+            </form>
         </div>
     </body>
 
