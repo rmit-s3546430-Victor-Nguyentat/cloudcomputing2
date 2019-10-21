@@ -30,7 +30,7 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: rgb(95, 146, 241);
   width: 100%;
   border: 0;
   padding: 15px;
@@ -41,7 +41,7 @@
   cursor: pointer;
 }
 .form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
+  background: rgb(128, 168, 241);
 }
 .form .message {
   margin: 15px 0 0;
@@ -89,12 +89,43 @@
   color: #EF3B3A;
 }
 body {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
+  background: #6cd1f0; /*fallback for old browsers*/
+  background: -webkit-linear-gradient(right, #6cd1f0, #7ddaf7);
+  background: -moz-linear-gradient(right, #6cd1f0, #7ddaf7);
+  background: -o-linear-gradient(right, #6cd1f0, #7ddaf7);
+  background: linear-gradient(to left, #6cd1f0, #7ddaf7);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
+}
+
+
+
+/*Navbar css*/
+.topnav {
+  background-color: grey;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: rgb(95, 146, 241);
+  color: white;
 }
