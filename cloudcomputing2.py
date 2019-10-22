@@ -1,11 +1,13 @@
 from flask import Flask, flash, redirect, render_template, request, url_for
+from flask_bootstrap import Bootstrap
 import os, json
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+Bootstrap(app)
 app.secret_key = 'xvasodiasiud'
 
-UPLOAD_FOLDER = 'uploaded_images'
+UPLOAD_FOLDER = 'static/img'
 ALLOWED_EXTENSIONS = set(['jpg', 'jpeg'])
 SECRET_KEY = ""
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -47,8 +49,9 @@ def upload_image():
             filename = secure_filename(file.filename)
             print("about to save")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('upload_image', filename=filename))  
-    return render_template('Upload_Image.html')
+            return render_template('Upload_Image.html', filename=filename)
+    else:
+        return render_template('Upload_Image.html')
 
 @app.route('/view_translations')
 def view_translations():

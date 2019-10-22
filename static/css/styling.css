@@ -55,55 +55,55 @@
 .form .register-form {
   display: none;
 }
-.container {
+.customContainer {
   position: relative;
   z-index: 1;
   max-width: 1500px;
   max-height: 1500px;
   margin: auto;
 }
-.container:before, .container:after {
+.customContainer:before, .customContainer:after {
   content: "";
   display: block;
   clear: both;
 }
-.container .info {
+.customContainer .info {
   margin: 50px auto;
   text-align: center;
 }
-.container .info h1 {
+.customContainer .info h1 {
   margin: 0 0 15px;
   padding: 0;
   font-size: 36px;
   font-weight: 300;
   color: #1a1a1a;
 }
-.container .info span {
+.customContainer .info span {
   color: #4d4d4d;
   font-size: 12px;
 }
-.container .info span a {
+.customContainer .info span a {
   color: #000000;
   text-decoration: none;
 }
-.container .info span .fa {
+.customContainer .info span .fa {
   color: #EF3B3A;
 }
 
-.container .translationContainer{
+.customContainer .translationContainer{
   display: flex;
 }
 
-.container .translationContainer .imageView{
+.customContainer .translationContainer .imageView{
   margin: 10%;
 }
-.container .translationContainer .translationView{
+.customContainer .translationContainer .translationView{
   display: flex;
   flex-direction: column;
 
 }
 
-.container .translationContainer .translationView .textField{
+.customContainer .translationContainer .translationView .textField{
   margin: 10%;
   width: 300%;
   height: 100%;
