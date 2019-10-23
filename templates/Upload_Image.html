@@ -17,9 +17,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6" style="text-align: center;">
-            <h1 style="overflow: hidden;text-overflow: ellipsis">{{filename}}</h1>
+            <h1 style="overflow: hidden;text-overflow: ellipsis">{{filename}}{{image_name}}</h1>
             {% if filename %}
             <img src="{{ url_for('static', filename='img/' + filename) }}" class="img-responsive" alt={{filename}}>
+            {%endif%}   
+            {% if imageURL %}
+            <img src="{{ imageURL }}" class="img-responsive" alt={{imageURL}}>
             {%endif%}   
                 <form method='post' enctype='multipart/form-data'> 
                         <input type="file" name="file" class="form-control">
@@ -28,21 +31,69 @@
             </div>  
         <div class="col-md-3">
             <h3>Detected text:</h3>
-            <textarea class="form-control" style="height:500px;"> 
-                    A wiki (/ˈwɪki/ (About this soundlisten) WIK-ee) is a knowledge base website on which users collaboratively modify content and structure directly from the web browser. In a typical wiki, text is written using a simplified markup language and often edited with the help of a rich-text editor.[1]
-
-                    A wiki is run using wiki software, otherwise known as a wiki engine. A wiki engine is a type of content management system, but it differs from most other such systems, including blog software, in that the content is created without any defined owner or leader, and wikis have little inherent structure, allowing structure to emerge according to the needs of the users.[2] There are dozens of different wiki engines in use, both standalone and part of other software, such as bug tracking systems. Some wiki engines are open source, whereas others are proprietary. Some permit control over different functions (levels of access); for example, editing rights may permit changing, adding, or removing material. Others may permit access without enforcing access control. Other rules may be imposed to organize content.
-                    
-                    The online encyclopedia project Wikipedia is the most popular wiki-based website, and is one of the most widely viewed sites in the world, having been ranked in the top ten since 2007.[3] Wikipedia is not a single wiki but rather a collection of hundreds of wikis, with each one pertaining to a specific language. In addition to Wikipedia, there are hundreds of thousands of other wikis in use, both public and private, including wikis functioning as knowledge management resources, notetaking tools, community websites, and intranets. The English-language Wikipedia has the largest collection of articles; as of September 2016, it had over five million articles. Ward Cunningham, the developer of the first wiki software, WikiWikiWeb, originally described wiki as "the simplest online database that could possibly work".[4] "Wiki" (pronounced [ˈwiki][note 1]) is a Hawaiian word meaning "quick".[5][6][7]A wiki (/ˈwɪki/ (About this soundlisten) WIK-ee) is a knowledge base website on which users collaboratively modify content and structure directly from the web browser. In a typical wiki, text is written using a simplified markup language and often edited with the help of a rich-text editor.[1]
-
-                    A wiki is run using wiki software, otherwise known as a wiki engine. A wiki engine is a type of content management system, but it differs from most other such systems, including blog software, in that the content is created without any defined owner or leader, and wikis have little inherent structure, allowing structure to emerge according to the needs of the users.[2] There are dozens of different wiki engines in use, both standalone and part of other software, such as bug tracking systems. Some wiki engines are open source, whereas others are proprietary. Some permit control over different functions (levels of access); for example, editing rights may permit changing, adding, or removing material. Others may permit access without enforcing access control. Other rules may be imposed to organize content.
-                    
-                    t popular wiki-based website, and is one of the most widely viewed sites in the world, having been ranked in the top ten since 2007.[3] Wikipedia is not a single wiki but rather a collection of hundreds of wikis, with each one pertaining to a specific language. In addition to Wikipedia, there are hundreds of thousands of other wikis in use, both public and private, including wikis functioning as knowledge management resources, notetaking tools, community websites, and intranets. The English-language Wikipedia has the largest collection of articles; as of September 2016, it had over five million articles. Ward Cunningham, the developer of the first wiki software, WikiWikiWeb, originally described wiki as "the simplest online database that could possibly work".[4] "Wiki" (pronounced [ˈwiki][note 1]) is a Hawaiian word meaning "quick".[5][6][7]    
+            {% if detectedText %}
+            <textarea name="text" form = "uploadForm" class="form-control" style="height:500px;"> {{detectedText}}
             </textarea>
+            <form class="form-inline" id="uploadForm" method="POST" action="{{ url_for('display_translation') }}">
+                <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon">Please select</span>
+                      {% if filename %}
+                      <input form = "uploadForm" style="display: none;" name = "filename" value="{{filename}}"></input>
+                        {% endif %}   
+                        {% if imageURL %}
+                      <input form = "uploadForm" style="display: none;" name = "imageURL" value="{{imageURL}}"></input>
+                        {% endif %}  
+                      <select name="lang_select" class="selectpicker form-control">
+                                <option value="ar">Arabic</option>
+                                <option value="zh">(Simplified)Chinese</option>
+                                <option value="zh-TW">(Traditional)Chinese</option>
+                                <option value="cs">Czech</option>
+                                <option value="da">Danish</option>
+                                <option value="nl">Dutch</option>
+                                <option value="en">English</option>
+                                <option value="fi">Finnish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                                <option value="el">Greek</option>
+                                <option value="he">Hebrew</option>
+                                <option value="hi">Hindi</option>
+                                <option value="hu">Hungarian</option>
+                                <option value="id">Indonesian</option>
+                                <option value="it">Italian</option>
+                                <option value="ja">Japanese</option>
+                                <option value="ko">Korean</option>
+                                <option value="ms">Malay</option>
+                                <option value="no">Norwegian</option>
+                                <option value="fa">Persian</option>
+                                <option value="pl">Polish</option>
+                                <option value="pt">Portuguese</option>
+                                <option value="ro">Romanian</option>
+                                <option value="ru">Russian</option>
+                                <option value="es">Spanish</option>
+                                <option value="sv">Swedish</option>
+                                <option value="th">Thai</option>
+                                <option value="tr">Turkish</option>
+                                <option value="uk">Ukrainian</option>
+                                <option value="ur">Urdu</option>
+                                <option value="vi">Vietnamese</option>
+                            </select>
+                            <button type="submit" class="btn btn-default">Translate!</button>
+                    </div>
+                </div>
+            </form>
+            {% else %}
+            <textarea class="form-control" style="height:500px;"> 
+            </textarea>
+            {% endif %}
         </div>
         <div class="col-md-3">
             <h3>Translated text:</h3>
-            <textarea class="form-control" style="height:500px;"> yo yo </textarea>
+            {% if translated_text %}
+            <textarea class="form-control" style="height:500px;">{{translated_text}}</textarea>
+            {% else %}
+            <textarea class="form-control" style="height:500px;"></textarea>
+            {% endif %}
         </div>
     </div>
 </div>

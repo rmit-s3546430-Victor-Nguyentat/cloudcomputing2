@@ -1,18 +1,39 @@
-<HTML>
-    <head>
-        <title>Flask app</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/styling.css') }}">
-    </head>
-    <body>
-        <div class="topnav">
-                <a href="/upload_image">Upload Image</a>
-                <a class="active" href="/view_translations">View Translations</a>
-                <a href="/">Logout</a>
-        </div>
-    </body>
-    
-    <footer>
-    </footer>
-    
-</HTML>
-  
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styling.css') }}">
+{% endblock %}
+
+{% block navbar %}
+<div class="topnav">
+        <a href="/upload_image">Upload Image</a>
+        <a class="active" href="/view_translations">View Translations</a>
+        <a href="/">Logout</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="table-responsive">
+<table class="table">
+    <tr>
+        <td><h1>Image</h1></td>
+        <td><h1>Date of Initial Translation</h1></td>
+        <td><h1>Actions</h1></td>
+    </tr>
+    {% if imageURLs %}
+        {% if image_dates %}
+        {% for index, imageURL in enumerate(imageURLs) %}
+        <tr>
+            <td><img src= "{{ imageURL }}" class="img-responsive" style="margin:10px; width:200px; height:200px;" ></td>
+            <td><h2> {{image_dates[index]}} </h2></td>
+            <td>
+                <a class="btn btn-primary" href="{{ url_for('upload_image', filename= imageURL) }}"> Retranslate! </a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    {% endif %}
+</table>
+</div>
+{% endblock %}
